@@ -45,6 +45,15 @@ python chessred.py --dataroot 'path/to/dataset' --browser
 
 ![ChessReD browser app](https://github.com/ThanosM97/end-to-end-chess-recognition/assets/41332813/0fd35982-52f5-40d1-a9a8-27aecf288938)
 
+## Image Preprocessing
+
+> **Important note for reproducing paper results.**
+
+The pretrained checkpoint linked below was trained on images that were **pre-processed offline** to a fixed **1024×1024** resolution before training. The raw images in the ChessReD dataset are high-resolution smartphone photographs and were not used directly.
+
+The pre-processed images can be downloaded from **[preprocssed-images](https://drive.google.com/file/d/1jxmFxjOy0qefdCZ_x3DMNtsvAK4LojEw/view)**. When using them, remove the `Resize` step from the transform (the pre-processed images are already the correct size). This is the configuration used for all experiments reported in the paper.
+
+If you train from scratch using the raw dataset images, the `Resize(1024)` transform included in [train.py](train.py) will handle the resizing at runtime. Note that due to differences in interpolation method and aspect ratio handling, a model trained this way may produce different results from the released checkpoint.
 
 ## Training
 
