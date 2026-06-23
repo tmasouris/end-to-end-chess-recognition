@@ -36,6 +36,9 @@ class ChessDataModule(pl.LightningDataModule):
         super().__init__()
         self.dataroot = dataroot
         self.transform = transforms.Compose([
+            # NOTE: The released pretrained checkpoint was trained on images
+            # pre-processed offline to 1024x1024. If you are evaluating that
+            # checkpoint, use the pre-processed images and remove this Resize.
             transforms.Resize(1024, antialias=None),
             transforms.ToPILImage(),
             transforms.ToTensor(),
